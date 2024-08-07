@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Cache;
 using Infrastructure.Cors;
 using Infrastructure.OpenTelemetry;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ public static class Startup
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
         return services
+            .AddPersistence(config)
             .AddEndpointsApiExplorer()
             .AddOpenTelemetry(config)
             .AddCaching(config)

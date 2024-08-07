@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Cache;
 using Infrastructure.Cors;
+using Infrastructure.OpenAPI;
 using Infrastructure.OpenTelemetry;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -14,6 +15,7 @@ public static class Startup
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
     {
         return services
+            .AddOpenAPI(config)
             .AddPersistence(config)
             .AddEndpointsApiExplorer()
             .AddOpenTelemetry(config)
@@ -25,7 +27,8 @@ public static class Startup
     {
         return builder
             .UseHttpsRedirection()
-            .UseAuthorization();
+            .UseAuthorization()
+            .UseOpenAPI();
     }
 
     public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder builder)

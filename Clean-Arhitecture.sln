@@ -18,15 +18,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{F5883E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrators", "Migrators", "{5E96515F-EC93-4F4D-8044-10A6FDFC6BAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Src\API\Core\Application\Application.csproj", "{AA93043B-8933-438A-9CE4-2182ABA6CEFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Src\API\Core\Application\Application.csproj", "{AA93043B-8933-438A-9CE4-2182ABA6CEFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Src\API\Core\Domain\Domain.csproj", "{D4E101E9-33F3-44BC-89F4-C33B4157E497}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Src\API\Core\Domain\Domain.csproj", "{D4E101E9-33F3-44BC-89F4-C33B4157E497}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Src\API\Core\Infrastructure\Infrastructure.csproj", "{2DA0B3C7-7A64-4D66-96E9-3691E23EBCC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Src\API\Core\Infrastructure\Infrastructure.csproj", "{2DA0B3C7-7A64-4D66-96E9-3691E23EBCC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSSQL", "Src\API\Migrators\MSSQL\MSSQL.csproj", "{B4C9C525-B0BB-4235-81C6-19ABAC61D637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSSQL", "Src\API\Migrators\MSSQL\MSSQL.csproj", "{B4C9C525-B0BB-4235-81C6-19ABAC61D637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Src\Shared\Shared\Shared.csproj", "{8E1DC7E4-CE23-48D2-A7F7-423BC081D448}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Src\Shared\Shared\Shared.csproj", "{8E1DC7E4-CE23-48D2-A7F7-423BC081D448}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Src\API\Server\Server.csproj", "{1A328247-0BCD-4B91-9D64-20F817A6ADA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,10 @@ Global
 		{8E1DC7E4-CE23-48D2-A7F7-423BC081D448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E1DC7E4-CE23-48D2-A7F7-423BC081D448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E1DC7E4-CE23-48D2-A7F7-423BC081D448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A328247-0BCD-4B91-9D64-20F817A6ADA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A328247-0BCD-4B91-9D64-20F817A6ADA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A328247-0BCD-4B91-9D64-20F817A6ADA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A328247-0BCD-4B91-9D64-20F817A6ADA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{2DA0B3C7-7A64-4D66-96E9-3691E23EBCC1} = {21A5C533-1C43-4814-9369-8114DD99D7D0}
 		{B4C9C525-B0BB-4235-81C6-19ABAC61D637} = {5E96515F-EC93-4F4D-8044-10A6FDFC6BAE}
 		{8E1DC7E4-CE23-48D2-A7F7-423BC081D448} = {F5883EF4-FC53-4030-BAEC-F1A8D4DA8522}
+		{1A328247-0BCD-4B91-9D64-20F817A6ADA2} = {C66A81D6-9BE2-4A8E-A2AC-B7E7192F571C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FAFCDBE-0D66-4ABA-8E4E-696FA21C1101}

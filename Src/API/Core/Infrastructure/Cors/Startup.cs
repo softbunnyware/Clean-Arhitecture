@@ -14,7 +14,7 @@ internal static class Startup
         var corsSettings = config.GetSection(nameof(CorsSettings)).Get<CorsSettings>();
         var origins = new List<string>();
 
-        if (corsSettings?.Clients != null)
+        if (!string.IsNullOrEmpty(corsSettings?.Clients))
         {
             origins.AddRange(corsSettings.Clients.Split(';', StringSplitOptions.RemoveEmptyEntries));
         }

@@ -1,7 +1,9 @@
-﻿namespace Application.Cors
+﻿namespace Application.Cors;
+
+public class CorsSettings
 {
-    public class CorsSettings
-    {
-        public string? Clients { get; set; }
-    }
+    /// <summary>
+    /// Clients URL for Cors settings
+    /// </summary>
+    public string? Clients { get; set; }
 }

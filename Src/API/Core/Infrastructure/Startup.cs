@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Cache;
 using Infrastructure.Cors;
+using Infrastructure.OpenTelemetry;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ public static class Startup
     {
         return services
             .AddEndpointsApiExplorer()
+            .AddOpenTelemetry(config)
             .AddCaching(config)
             .AddCorsPolicy(config);
     }

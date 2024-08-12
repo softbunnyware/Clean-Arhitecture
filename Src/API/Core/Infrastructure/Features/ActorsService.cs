@@ -48,7 +48,7 @@ public class ActorsService : IActorsService
 
     public async Task<GetActorResponse> GetActorByIdAsync(Guid id)
     {
-        return (await _context.Actors.Where(x => x.Id == id).FirstOrDefaultAsync()).Adapt<GetActorResponse>();
+        return (await _context.Actors.Include(x => x.Movies).Where(x => x.Id == id).FirstOrDefaultAsync()).Adapt<GetActorResponse>();
     }
 
     public async Task<List<GetActorResponse>> SearchActorsAsync()

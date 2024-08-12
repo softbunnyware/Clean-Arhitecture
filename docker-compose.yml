@@ -1,24 +1,32 @@
 version: '3.4'
 
 services:
+
+  database:
+    container_name: database
+    image: "mcr.microsoft.com/mssql/server"
+    environment:
+      MSSQL_SA_PASSWORD: "CJnEmigeG!@JLipcRy4&2MNv"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
   server:
     image: ${DOCKER_REGISTRY-}server
+    container_name: server
     build:
       context: .
       dockerfile: Src/API/Server/Dockerfile
+    ports:
+    - 8000:8000
+    - 8001:8001
     environment:
     - OTEL_EXPORTER_OTLP_ENDPOINT=http://server.dashboard:18889
-    networks:
-    - otel
 
   server.dashboard:
     image: mcr.microsoft.com/dotnet/nightly/aspire-dashboard:latest
     container_name: dashboard
     ports:
     - 18888:18888
-    networks:
-    - otel
 
-networks:
-  otel: 
 

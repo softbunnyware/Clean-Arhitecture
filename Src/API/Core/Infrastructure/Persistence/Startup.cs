@@ -1,6 +1,7 @@
 ﻿using Application.Persistence;
 using Infrastructure.Persistence.Configuration;
 using Infrastructure.Persistence.Context;
+using Infrastructure.Persistence.Initialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +22,9 @@ internal static class Startup
             {
                 var databaseSettings = config.GetSection(nameof(PersistenceSettings)).Get<PersistenceSettings>();
                 m.UseDatabase(databaseSettings.DatabaseProvider, databaseSettings.ConnectionString);
-            });
+            })
+            .AddTransient<IDatabaseInitializer, DatabaseInitializer>()
+            .AddTransient<ApplicationDbInitializer>();
     }
 
     internal static DbContextOptionsBuilder UseDatabase(this DbContextOptionsBuilder builder, string databaseProvider, string connectionString)
@@ -30,7 +33,7 @@ internal static class Startup
         {
             case DatabaseProvider.MSSQL:
                 return builder.UseSqlServer(connectionString, e =>
-                     e.MigrationsAssembly("Migrators.MSSQL"));
+                     e.MigrationsAssembly("MSSQL"));
 
             default:
                 throw new InvalidOperationException($"DB Provider {databaseProvider} is not supported.");

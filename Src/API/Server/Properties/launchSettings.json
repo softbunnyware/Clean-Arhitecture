@@ -36,6 +36,15 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
+    },
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "server": "StartDebugging"
+      },
+      "httpPort": 5000,
+      "sslPort": 5001
     }
   }
 }

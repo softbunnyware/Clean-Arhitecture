@@ -3,6 +3,7 @@ using Application.Features.Movies.DeleteMovie;
 using Application.Features.Movies.GetMovie;
 using Application.Features.Movies.SearchMovies;
 using Application.Features.Movies.UpdateMovie;
+using Application.Pagination;
 using Microsoft.AspNetCore.Mvc;
 using Server.Controllers.Base;
 
@@ -17,9 +18,9 @@ public class MoviesController : BaseController
     }
 
     [HttpGet("search")]
-    public async Task<List<GetMovieResponse>> SearchAsync()
+    public async Task<PaginationResponse<GetMovieResponse>> SearchAsync([FromQuery] SearchMoviesCommand query)
     {
-        return await Mediator.Send(new SearchMoviesCommand());
+        return await Mediator.Send(query);
     }
 
     [HttpPost("create")]

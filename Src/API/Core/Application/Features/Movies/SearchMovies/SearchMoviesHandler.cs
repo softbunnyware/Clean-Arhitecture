@@ -1,9 +1,10 @@
 ﻿using Application.Features.Movies.GetMovie;
+using Application.Pagination;
 using MediatR;
 
 namespace Application.Features.Movies.SearchMovies;
 
-public class SearchMoviesHandler : IRequestHandler<SearchMoviesCommand, List<GetMovieResponse>>
+public class SearchMoviesHandler : IRequestHandler<SearchMoviesCommand, PaginationResponse<GetMovieResponse>>
 {
     private readonly IMoviesService _service;
 
@@ -12,8 +13,8 @@ public class SearchMoviesHandler : IRequestHandler<SearchMoviesCommand, List<Get
         _service = service;
     }
 
-    public async Task<List<GetMovieResponse>> Handle(SearchMoviesCommand request, CancellationToken cancellationToken)
+    public async Task<PaginationResponse<GetMovieResponse>> Handle(SearchMoviesCommand request, CancellationToken cancellationToken)
     {
-        return await _service.SearchMoviesAsync();
+        return await _service.SearchMoviesAsync(request);
     }
 }

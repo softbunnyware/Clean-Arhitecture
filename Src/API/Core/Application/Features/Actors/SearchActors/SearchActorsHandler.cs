@@ -1,9 +1,10 @@
 ﻿using Application.Features.Actors.GetActor;
+using Application.Pagination;
 using MediatR;
 
 namespace Application.Features.Actors.SearchActors;
 
-public class SearchActorsHandler : IRequestHandler<SearchActorsCommand, List<GetActorResponse>>
+public class SearchActorsHandler : IRequestHandler<SearchActorsCommand, PaginationResponse<GetActorResponse>>
 {
     private readonly IActorsService _service;
 
@@ -12,8 +13,8 @@ public class SearchActorsHandler : IRequestHandler<SearchActorsCommand, List<Get
         _service = service;
     }
 
-    public async Task<List<GetActorResponse>> Handle(SearchActorsCommand request, CancellationToken cancellationToken)
+    public async Task<PaginationResponse<GetActorResponse>> Handle(SearchActorsCommand request, CancellationToken cancellationToken)
     {
-        return await _service.SearchActorsAsync();
+        return await _service.SearchActorsAsync(request);
     }
 }

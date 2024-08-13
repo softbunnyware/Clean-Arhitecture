@@ -6,7 +6,9 @@ using Domain.Entities;
 using Infrastructure.Persistence.Context;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using Infrastructure.Pagination;
+using Application.Pagination;
+using Application.Features.Movies.SearchMovies;
 
 namespace Infrastructure.Features;
 
@@ -53,10 +55,9 @@ public class MoviesService : IMoviesService
         return (await _context.Movies.Where(x => x.Id == id).FirstOrDefaultAsync()).Adapt<GetMovieResponse>();
     }
 
-    public async Task<List<GetMovieResponse>> SearchMoviesAsync()
+    public async Task<PaginationResponse<GetMovieResponse>> SearchMoviesAsync(SearchMoviesCommand request)
     {
-        var movies = (await _context.Movies.Include(x => x.Actors).ToListAsync()).Adapt<List<GetMovieResponse>>();
-        return movies;
+        return await _context.Movies.Include(x => x.Actors).ToPagedListAsync<Movie, GetMovieResponse>(request.PageNumber,request.PageSize);
     }
 
     public async Task UpdateMovieAsync(UpdateMovieCommand request)

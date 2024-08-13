@@ -3,6 +3,7 @@ using Application.Features.Actors.DeleteActor;
 using Application.Features.Actors.GetActor;
 using Application.Features.Actors.SearchActors;
 using Application.Features.Actors.UpdateActor;
+using Application.Pagination;
 using Microsoft.AspNetCore.Mvc;
 using Server.Controllers.Base;
 
@@ -17,9 +18,9 @@ public class ActorsController : BaseController
     }
 
     [HttpGet("search")]
-    public async Task<List<GetActorResponse>> SearchAsync()
+    public async Task<PaginationResponse<GetActorResponse>> SearchAsync([FromQuery] SearchActorsCommand query)
     {
-        return await Mediator.Send(new SearchActorsCommand());
+        return await Mediator.Send(query);
     }
 
     [HttpPost("create")]

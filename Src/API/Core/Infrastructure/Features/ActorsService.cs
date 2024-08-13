@@ -1,8 +1,11 @@
 ﻿using Application.Features.Actors;
 using Application.Features.Actors.CreateActor;
 using Application.Features.Actors.GetActor;
+using Application.Features.Actors.SearchActors;
 using Application.Features.Actors.UpdateActor;
+using Application.Pagination;
 using Domain.Entities;
+using Infrastructure.Pagination;
 using Infrastructure.Persistence.Context;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
@@ -51,11 +54,9 @@ public class ActorsService : IActorsService
         return (await _context.Actors.Include(x => x.Movies).Where(x => x.Id == id).FirstOrDefaultAsync()).Adapt<GetActorResponse>();
     }
 
-    public async Task<List<GetActorResponse>> SearchActorsAsync()
+    public async Task<PaginationResponse<GetActorResponse>> SearchActorsAsync(SearchActorsCommand request)
     {
-        var actors = await _context.Actors.ToListAsync();
-
-        return actors.Adapt<List<GetActorResponse>>();
+        return await _context.Actors.Include(x => x.Movies).ToPagedListAsync<Actor, GetActorResponse>(request.PageNumber, request.PageSize);
     }
 
     public async Task UpdateActorAsync(UpdateActorCommand request)
